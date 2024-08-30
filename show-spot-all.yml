@@ -1,0 +1,16 @@
+---
+- name: Display Equinix Metal Spot Prices for All Metro in YAML format
+  hosts: localhost
+  gather_facts: no
+  vars_files:
+    - vars/equinix_metal_vars.yml
+  tasks:
+    - name: Retrieve spot prices for all instance types
+      uri:
+        url: "https://api.equinix.com/metal/v1/market/spot/prices"
+        headers:
+          X-Auth-Token: "{{ equinix_metal_api_token }}"
+        method: GET
+        return_content: yes
+        status_code: 200
+      register: spot_prices_response
