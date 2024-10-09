@@ -30,3 +30,12 @@
       debug:
         var: sydney_spot_prices
         verbosity: 0
+
+    - name: Format spot prices with sed to replace single quotes with double quotes
+      shell: echo "{{ sydney_spot_prices }}" | sed "s/'/\"/g" | jq .
+      register: formatted_spot_prices
+
+    - name: Display formatted spot prices
+      debug:
+        var: formatted_spot_prices.stdout
+        verbosity: 0
