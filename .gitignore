@@ -1,1 +1,3 @@
 vars/equinix_metal_vars.yml
+prices.json
+equinix-metal-ocp.code-workspace

@@ -14,3 +14,13 @@
         return_content: yes
         status_code: 200
       register: spot_prices_response
+
+    - name: Display spot prices in YAML format
+      debug:
+        var: spot_prices_response
+        verbosity: 0
+
+    - name: Write spot prices to prices.json
+      copy:
+        content: "{{ spot_prices_response.content }}"
+        dest: "./prices.json"
